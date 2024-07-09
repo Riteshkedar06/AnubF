@@ -7,12 +7,13 @@ import {
   updateBlog,
 } from "../controllers/BlogController.js";
 import upload from "../middlewares/upload.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
 router.get("/get", getBlogs);
-router.post("/", upload, createBlog);
-router.put("/:id", upload, updateBlog);
+router.post("/", upload, authMiddleware, createBlog);
+router.put("/:id", upload, authMiddleware, updateBlog);
 router.delete("/:id", deleteBlog);
 router.get("/get/:id", getBlogById);
 

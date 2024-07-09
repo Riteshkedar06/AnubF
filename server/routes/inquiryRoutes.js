@@ -5,6 +5,7 @@ import {
   getInquiryById,
   deleteInquiry,
 } from "../controllers/inquiryController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
@@ -12,6 +13,6 @@ const router = express.Router();
 router.post("/create", createInquiry);
 router.get("/", getAllInquiries);
 router.get("/:id", getInquiryById);
-router.delete("/:id", deleteInquiry);
+router.delete("/:id", authMiddleware, deleteInquiry);
 
 export default router;
